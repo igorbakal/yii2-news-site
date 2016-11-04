@@ -26,6 +26,15 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'templateFile' => '@jamband/schemadump/template.php',
+        ],
+        'schemadump' => [
+            'class' => 'jamband\schemadump\SchemaDumpController',
+        ],
+    ],
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.

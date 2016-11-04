@@ -66,7 +66,7 @@ class NewsController extends Controller
         $model = new News();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->user_id = Yii::$app->user->id;
+            $model->user_id = Yii::$app->user->identity['id'];
             if ($model->validate() && $model->save()) {
                 $model->sendEmailNoticeNewNews();
                 $model->sendAddNewsNotice();
