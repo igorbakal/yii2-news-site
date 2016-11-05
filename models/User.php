@@ -31,6 +31,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 10;
 
+    public $password;
+
     const SCENARIO_PROFILE = 'profile';
 
     /**
@@ -69,6 +71,9 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'string', 'max' => 255],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
+
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
         ];
     }
 
@@ -238,6 +243,7 @@ class User extends ActiveRecord implements IdentityInterface
             'username' => 'Логин',
             'email' => 'E-mail',
             'status' => 'Статус',
+            'password' => 'Пароль',
         ];
     }
 }

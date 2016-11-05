@@ -14,9 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'notification_type')->dropDownList([ 'email' => 'Почта', 'browser' => 'Браузер']) ?>
+    <?= $form->field($model, 'notification_type')->dropDownList([ 'e-mail' => 'Почта', 'browser' => 'Браузер']) ?>
 
     <?= $form->field($model, 'status')->dropDownList([ '0' => 'Неактивный', '10' => 'Активный', ])?>
 
