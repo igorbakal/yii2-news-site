@@ -61,15 +61,6 @@ class PasswordChangeForm extends Model
         }
     }
 
-    public function sendChangePasswordMail()
-    {
-        return Yii::$app->mailer->compose(['html' => 'change-password-html', 'text' => 'change-password-text'], ['user' => $user])
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Изменение пароля ' . Yii::$app->name)
-            ->send();
-    }
-
     /**
      * @return boolean
      */
@@ -83,4 +74,18 @@ class PasswordChangeForm extends Model
             return false;
         }
     }
+
+    /**
+     * @return boolean
+     */
+    public function sendChangePasswordMail()
+    {
+            return Yii::$app->mailer->compose(['html' => 'change-password-html', 'text' => 'change-password-text'], ['user' => $this->_user])
+                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                ->setTo($this->_user->email)
+                ->setSubject('Изменение пароля ' . Yii::$app->name)
+                ->send();
+    }
+
+
 }

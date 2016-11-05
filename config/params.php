@@ -6,7 +6,5 @@ return [
     'defaultRole' => 'user',
     'user.passwordResetTokenExpire' => 3600,
     'userToken' => 3600,
-    'mdm.admin.configs' => [
-        'defaultUserStatus' => 0, // 0 = inactive, 10 = active
-    ]
+    'defaultNotificationType' => 'e-mail',
 ];

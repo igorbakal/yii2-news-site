@@ -2,13 +2,17 @@
 
 namespace app\models;
 
+use Yii;
+use app\models\User;
 use yii\base\InvalidParamException;
 use yii\base\Model;
-use app\models\User;
-use Yii;
 
-class EmailConfirmForm extends Model
+/**
+ * Password reset form
+ */
+class ResetPassword extends Model
 {
+    public $password;
     /**
      * @var User
      */
@@ -18,7 +22,7 @@ class EmailConfirmForm extends Model
      * Creates a form model given a token.
      *
      * @param  string $token
-     * @param  array $config
+     * @param  array $config name-value pairs that will be used to initialize the object properties
      * @throws \yii\base\InvalidParamException if token is empty or not valid
      */
     public function __construct($token, $config = [])
@@ -26,7 +30,7 @@ class EmailConfirmForm extends Model
         if (empty($token) || !is_string($token)) {
             throw new InvalidParamException('Отсутствует код подтверждения.');
         }
-        $this->_user = User::findByEmailConfirmToken($token);
+        $this->_user = User::findByPasswordResetToken($token);
         if (!$this->_user) {
             throw new InvalidParamException('Неверный токен.');
         }
@@ -34,31 +38,27 @@ class EmailConfirmForm extends Model
     }
 
     /**
-     * Confirm email.
-     *
-     * @return boolean if email was confirmed.
+     * @inheritdoc
      */
-    public function confirmEmail()
+    public function rules()
     {
-        $user = $this->_user;
-        $user->status = User::STATUS_ACTIVE;
-        $user->removeEmailConfirmToken();
-
-        return $user->save();
-    }
-
-    public function getUsername()
-    {
-        $user = $this->_user;
-        return $user->username;
+        return [
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
+        ];
     }
 
     /**
-     * @return User
+     * Resets password.
+     *
+     * @return boolean if password was reset.
      */
-    public function getUser()
+    public function resetPassword()
     {
-        return $this->_user;
-    }
+        $user = $this->_user;
+        $user->setPassword($this->password);
+        $user->removePasswordResetToken();
 
+        return $user->save(false);
+    }
 }

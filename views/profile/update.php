@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Редактировани информаци�
 
     <?= $form->field($model, 'email')->input('email', ['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'typesArray')->dropDownList($model->types)->label('Формат уведомлений') ?>
+    <?= $form->field($model, 'notification_type')->dropDownList(['email' => 'Почта' , 'browser' => 'Браузер'])?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>

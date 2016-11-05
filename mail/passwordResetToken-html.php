@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $user mdm\admin\models\User */
+/* @var $user app\models\User */
 
 $resetLink = Url::to(['site/reset-password','token'=>$user->password_reset_token], true);
 ?>
