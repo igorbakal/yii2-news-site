@@ -29,7 +29,7 @@ AppAsset::register($this);
     <?php
     $menuItems = [
         ['label' => 'Новости', 'url' => ['/admin/news/index']],
-        ['label' => 'Пользователи', 'url' => ['/rbac/default/index']],
+        ['label' => 'RBAC', 'url' => ['/rbac/']],
         Yii::$app->user->isGuest ? (
         ['label' => 'Войти', 'url' => ['/site/login']]
         ) : (

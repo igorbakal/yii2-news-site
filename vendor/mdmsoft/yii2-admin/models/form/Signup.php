@@ -2,7 +2,6 @@
 namespace mdm\admin\models\form;
 
 use Yii;
-use mdm\admin\models\User;
 use yii\base\Model;
 
 /**
@@ -22,13 +21,13 @@ class Signup extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => 'mdm\admin\models\User', 'message' => 'Это имя уже взято.'],
+            ['username', 'unique', 'targetClass' => 'common\models\User', 'message' => 'Это имя уже взято.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => 'mdm\admin\models\User', 'message' => 'Этот адрес электронной почты взят.'],
+            ['email', 'unique', 'targetClass' => 'common\models\User', 'message' => 'Этот адрес электронной почты взят.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

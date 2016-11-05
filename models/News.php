@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use mdm\admin\models\User;
+use app\models\User;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
@@ -59,7 +59,7 @@ class News extends ActiveRecord
     {
         $users = User::find()->where(['status' => User::STATUS_ACTIVE])->all();
         foreach ($users as $key => $val) {
-            if (in_array('email', $val->types)) {
+            if ($val->notification_type == 'e-mail' ) {
                 Yii::$app->mailer->compose(['html' => 'emailNews-html', 'text' => 'emailNews-text'], ['news' => $this])
                     ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
                     ->setTo($val->email)
@@ -78,7 +78,7 @@ class News extends ActiveRecord
     {
         $users = User::find()->where(['status' => User::STATUS_ACTIVE])->all();
         foreach ($users as $key => $val) {
-            if (in_array('browser', $val->types)) {
+            if ($val->notification_type == 'browser' ) {
                 $notice = new Notice();
                 $notice->for_user = $val->id;
                 $notice->status = $notice::STATUS_NOT_READ;

@@ -18,7 +18,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'mdm\admin\models\User',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['site/login'],
         ],

@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $user mdm\admin\models\User */
+/* @var $user app\models\User */
 
 ?>
 <div class="new-user">
